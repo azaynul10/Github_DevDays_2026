@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git, GitHub &amp; Your First AI Teammate — Dev Days Dhaka 2026</title>
+<meta name="description" content="Companion guide to Zaynul Abedin Miah's Dev Days Dhaka 2026 session: version control, Git, GitHub, pull requests and two hands-on GitHub Copilot demos.">
+<meta name="theme-color" content="#0d1117">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Git, GitHub & Your First AI Teammate — Dev Days Dhaka 2026">
+<meta property="og:description" content="Fly over the repository city, then follow the full session at your own pace: Git basics, pull requests and two GitHub Copilot demos.">
+<meta property="og:image" content="https://azaynul10.github.io/Github_DevDays_2026/assets/social-preview.png">
+<meta property="og:url" content="https://azaynul10.github.io/Github_DevDays_2026/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/github-mark-white.png">
+<link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#guide">Skip to the guide</a>
+
+<header class="topbar" id="top">
+  <a class="brand" href="#top" aria-label="Back to top">
+    <img src="assets/github-copilot-lockup-white.png" alt="GitHub Copilot" width="160" height="21">
+    <span class="brand-divider" aria-hidden="true"></span>
+    <span class="brand-event">Dev Days · Dhaka</span>
+  </a>
+  <nav class="topnav" aria-label="Sections">
+    <a href="#route">Route</a>
+    <a href="#hands-on">Git hands-on</a>
+    <a href="#demo-1">Copilot demos</a>
+    <a href="#next">Resources</a>
+    <a class="topnav-cta" href="https://github.com/azaynul10/Github_DevDays_2026" rel="noopener">View repo</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="hero-title">
+  <canvas id="flight-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Dev Days 2026 · Dhaka, Bangladesh</p>
+    <h1 id="hero-title">Git. GitHub.<br><span class="accent">Your first AI teammate.</span></h1>
+    <p class="hero-lead">Fly over a city built from commits, then walk through the whole session at your own pace — version control, pull requests and two hands-on GitHub Copilot demos.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#route">Start the guide</a>
+      <a class="btn btn-ghost" href="Your-First-AI-Teammate-DevDays-Solo.pptx" download>Download slides (.pptx)</a>
+    </div>
+    <p class="hero-byline">Zaynul Abedin Miah · Computer Science, BRAC University · Former Microsoft Student Ambassador (Gold)</p>
+  </div>
+  <div class="hero-legend" aria-hidden="true">
+    <span><i class="swatch swatch-main"></i>main branch · commits</span>
+    <span><i class="swatch swatch-feature"></i>feature branch · pull request</span>
+  </div>
+  <button class="flight-toggle" id="flight-toggle" type="button" aria-pressed="false"><span>Pause flight</span></button>
+  <p class="sr-only">Decorative animation: a drone camera flies over a 3D city where each tower is a commit. A green main street and a purple feature branch merge through a pull request.</p>
+</section>
+
+<section class="intro-strip" aria-label="About this page">
+  <div class="wrap intro-grid">
+    <p><strong>Missed part of the session, or want to try it yourself?</strong> Everything planned for the talk is here — including the Copilot demos we did not have time to run live.</p>
+    <ul class="stats">
+      <li><b>9</b><span>stops on the route</span></li>
+      <li><b>2</b><span>Copilot demos</span></li>
+      <li><b>3</b><span>practice folders</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="layout wrap" id="guide">
+  <aside class="rail" aria-label="Route progress">
+    <p class="rail-title">Flight route</p>
+    <ol class="rail-list">
+      <li><a href="#why">Why version control</a></li>
+      <li><a href="#three">Git · GitHub · Copilot</a></li>
+      <li><a href="#zones">Save, stage, commit</a></li>
+      <li><a href="#hands-on">Git hands-on</a></li>
+      <li><a href="#branch">Branch &amp; pull request</a></li>
+      <li><a href="#safety">Share safely</a></li>
+      <li><a href="#copilot">Meet Copilot</a></li>
+      <li><a href="#demo-1">Demo 1 · fix a bug</a></li>
+      <li><a href="#demo-2">Demo 2 · add a feature</a></li>
+      <li><a href="#review">Review the result</a></li>
+      <li><a href="#next">Next steps</a></li>
+    </ol>
+    <div class="rail-progress" aria-hidden="true"><span id="rail-progress-bar"></span></div>
+  </aside>
+
+  <div class="content">
+    <section class="section" id="route" aria-labelledby="route-title">
+      <p class="kicker">Before take-off</p>
+      <h2 id="route-title">The route in one picture</h2>
+      <p class="lead">Each stop builds on the last. By the end you can track a change, propose it for review, and ask Copilot for help without giving up responsibility for the result.</p>
+      <ol class="waypoints">
+        <li><a href="#why"><span>01</span>Track changes</a></li>
+        <li><a href="#branch"><span>02</span>Work together</a></li>
+        <li><a href="#demo-1"><span>03</span>Direct the AI</a></li>
+        <li><a href="#review"><span>04</span>Review &amp; own it</a></li>
+      </ol>
+    </section>
+
+    <section class="section reveal" id="why" aria-labelledby="why-title">
+      <p class="kicker">Stop 01</p>
+      <h2 id="why-title">The “final-final-v3” problem</h2>
+      <div class="compare">
+        <article class="card card-muted">
+          <h3>Without version control</h3>
+          <pre class="files">project-final/
+project-final-new/
+project-really-final/
+project-really-final-v3/</pre>
+          <p>Which folder is current? Which change fixed the bug — and who made it?</p>
+        </article>
+        <article class="card card-accent">
+          <h3>With version control</h3>
+          <ul class="ticks">
+            <li>Named checkpoints with messages</li>
+            <li>Exact differences between versions</li>
+            <li>Parallel lines of work</li>
+            <li>A history you can explain</li>
+          </ul>
+        </article>
+      </div>
+      <p class="note">Git is not a magic backup. If the only copy lives on your laptop and the laptop is lost, so is the history. A remote copy is a separate decision.</p>
+    </section>
+
+    <section class="section reveal" id="three" aria-labelledby="three-title">
+      <p class="kicker">Stop 02</p>
+      <h2 id="three-title">Git is not GitHub — and neither is Copilot</h2>
+      <div class="cards-3">
+        <article class="card"><span class="tag tag-green">Tool</span><h3>Git</h3><p>Version-control software on your computer. Records history locally and works offline.</p></article>
+        <article class="card"><span class="tag tag-green">Platform</span><h3>GitHub</h3><p>Hosts repositories and adds issues, pull requests, reviews and automation for collaboration.</p></article>
+        <article class="card card-accent"><span class="tag tag-purple">Assistant</span><h3>GitHub Copilot</h3><p>AI help inside the workflow. Its suggestions and actions still need your review.</p></article>
+      </div>
+      <p class="note">Saving in the editor, committing in Git, pushing to GitHub and deploying a website are four different steps.</p>
+    </section>
+
+    <section class="section reveal" id="zones" aria-labelledby="zones-title">
+      <p class="kicker">Stop 03</p>
+      <h2 id="zones-title">Save ≠ stage ≠ commit</h2>
+      <div class="zones" role="list">
+        <div class="zone" role="listitem"><b>Working files</b><span>Edit and save in your editor.</span></div>
+        <div class="zone-arrow" aria-hidden="true">git add →</div>
+        <div class="zone" role="listitem"><b>Staging area</b><span>Choose the exact change to record.</span></div>
+        <div class="zone-arrow" aria-hidden="true">git commit →</div>
+        <div class="zone zone-accent" role="listitem"><b>Commit history</b><span>A checkpoint with a message.</span></div>
+      </div>
+      <div class="diffnote">
+        <p><code>git diff</code> compares <b>working files ↔ staging</b>.</p>
+        <p><code>git diff --staged</code> compares <b>staging ↔ last commit</b>.</p>
+      </div>
+      <p class="note">After <code>git add</code>, plain <code>git diff</code> can look empty. Your change did not disappear — it moved to staging.</p>
+    </section>
+
+    <section class="section reveal" id="hands-on" aria-labelledby="hands-title">
+      <p class="kicker">Stop 04 · Try it</p>
+      <h2 id="hands-title">Your first two checkpoints</h2>
+      <p class="lead">Use the <a href="https://github.com/azaynul10/Github_DevDays_2026/tree/main/git-basics" rel="noopener"><code>git-basics</code></a> folder. It contains one file, <code>notes.md</code>. Run these commands inside that folder — never inside an important project.</p>
+      <div class="steps">
+        <article class="step">
+          <h3><span>1</span>Start tracking</h3>
+          <div class="term" data-copy-source>
+            <div class="term-bar"><i></i><i></i><i></i><button type="button" class="copy">Copy</button></div>
+<pre><code>git init -b main
+git status
+git add notes.md
+git diff --staged
+git commit -m "Add learning goals"</code></pre>
+          </div>
+          <p>If Git asks who you are, set your name and email once with <code>git config --global user.name</code> and <code>user.email</code>.</p>
+        </article>
+        <article class="step">
+          <h3><span>2</span>Make and inspect a change</h3>
+          <p>Add a new line to <code>notes.md</code> in your editor, for example <code>- Build one small project.</code>, and save.</p>
+          <div class="term" data-copy-source>
+            <div class="term-bar"><i></i><i></i><i></i><button type="button" class="copy">Copy</button></div>
+<pre><code>git diff
+git add notes.md
+git diff --staged
+git commit -m "Add a practice goal"</code></pre>
+          </div>
+          <p>Predict what the diff will show <em>before</em> you run it. A plus sign marks an added line.</p>
+        </article>
+        <article class="step">
+          <h3><span>3</span>Read the story</h3>
+          <div class="term" data-copy-source>
+            <div class="term-bar"><i></i><i></i><i></i><button type="button" class="copy">Copy</button></div>
+<pre><code>git log --oneline -3
+git show HEAD:notes.md
+git status</code></pre>
+          </div>
+          <div class="sample">
+            <p class="sample-label">Example output — your commit IDs will differ</p>
+<pre>7172ba7 Add a practice goal
+3fcbeec Add learning goals</pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="branch" aria-labelledby="branch-title">
+      <p class="kicker">Stop 05</p>
+      <h2 id="branch-title">From a branch to a reviewed change</h2>
+      <figure class="graph">
+        <svg viewBox="0 0 720 210" role="img" aria-labelledby="graph-title graph-desc">
+          <title id="graph-title">Branch and merge diagram</title>
+          <desc id="graph-desc">Commits A and B on main. A feature branch improve-notes adds commit F, which is reviewed in a pull request and merged into main as commit C.</desc>
+          <path d="M40 140 H680" class="g-main"/>
+          <path d="M250 140 C300 140 310 60 380 60 C450 60 470 140 540 140" class="g-feature"/>
+          <g class="g-node g-node-main"><circle cx="90" cy="140" r="16"/><text x="90" y="145">A</text></g>
+          <g class="g-node g-node-main"><circle cx="250" cy="140" r="16"/><text x="250" y="145">B</text></g>
+          <g class="g-node g-node-feature"><circle cx="380" cy="60" r="16"/><text x="380" y="65">F</text></g>
+          <g class="g-node g-node-main"><circle cx="560" cy="140" r="16"/><text x="560" y="145">C</text></g>
+          <text x="40" y="182" class="g-label g-label-main">main</text>
+          <text x="330" y="28" class="g-label g-label-feature">improve-notes</text>
+          <text x="470" y="96" class="g-label">pull request · review</text>
+        </svg>
+      </figure>
+      <ol class="flow">
+        <li><b>Issue</b><span>Describe the problem and what “done” means.</span></li>
+        <li><b>Branch + commits</b><span>Make small, understandable changes. <code>git switch -c improve-notes</code></span></li>
+        <li><b>Pull request</b><span>Propose the change. Reviewers read the diff and check the evidence.</span></li>
+        <li><b>Merge</b><span>Integrate reviewed work. Opening a PR never obliges anyone to merge it.</span></li>
+      </ol>
+      <details class="more">
+        <summary>Remote commands in one line each</summary>
+        <ul>
+          <li><code>git clone &lt;url&gt;</code> — make a local copy of a remote repository.</li>
+          <li><code>git fetch</code> — download updates without changing your branch.</li>
+          <li><code>git pull</code> — fetch and integrate updates (merge or rebase, depending on configuration).</li>
+          <li><code>git push</code> — send your commits to a remote you have permission to write to.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="section reveal" id="safety" aria-labelledby="safety-title">
+      <p class="kicker">Stop 06</p>
+      <h2 id="safety-title">Share code, not secrets</h2>
+      <div class="cards-3">
+        <article class="card"><h3>Before adding</h3><p>Read <code>git status</code>. Stage only the files you intend to share.</p></article>
+        <article class="card"><h3>Before publishing</h3><p>Check for API keys, passwords, personal data, licences and repository visibility.</p></article>
+        <article class="card card-warn"><h3>If a secret leaks</h3><p>Revoke or rotate it. Deleting the line in a later commit does not remove it from history.</p></article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="copilot" aria-labelledby="copilot-title">
+      <p class="kicker">Stop 07</p>
+      <h2 id="copilot-title">Meet your AI teammate</h2>
+      <p class="lead">The current Dev Days round focuses on the <a href="https://gh.io/app" rel="noopener">GitHub Copilot app</a> and Copilot CLI. The workflow matters more than the tool you start with.</p>
+      <ol class="loop">
+        <li><b>Plan</b><span>Give context, constraints and a clear task.</span></li>
+        <li><b>Build</b><span>Inspect proposed edits and tool actions.</span></li>
+        <li><b>Review</b><span>Read the diff and the real test results.</span></li>
+        <li><b>Ship</b><span>Merge or publish only with deliberate approval.</span></li>
+      </ol>
+      <div class="prompt-compare">
+        <article class="card card-muted"><span class="tag">Vague</span><p>“Fix everything and make it better.”</p></article>
+        <article class="card card-accent"><span class="tag tag-purple">Bounded</span><p>“Explain the bug first. Change only the relevant function. Keep the interface. Run the named tests and show the actual result.”</p></article>
+      </div>
+      <p class="note">Copilot Free and Copilot Student currently use Auto model selection, and usage draws on a monthly allowance. Check your own plan before a workshop.</p>
+    </section>
+
+    <section class="section reveal demo" id="demo-1" aria-labelledby="demo1-title">
+      <p class="kicker">Stop 08 · Copilot demo 1</p>
+      <h2 id="demo1-title">Explain, test, fix: why is 4 “prime”?</h2>
+      <p class="lead">Open <a href="https://github.com/azaynul10/Github_DevDays_2026/tree/main/copilot-demo" rel="noopener"><code>copilot-demo</code></a>. <code>prime.py</code> contains an intentional bug, and <code>test_prime.py</code> catches it.</p>
+      <div class="demo-grid">
+        <div>
+          <h3 class="mini">1 · Reproduce the failure</h3>
+          <div class="term" data-copy-source>
+            <div class="term-bar"><i></i><i></i><i></i><button type="button" class="copy">Copy</button></div>
+<pre><code>python -m unittest -v test_prime.py</code></pre>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Test output">
+            <button type="button" role="tab" aria-selected="true" aria-controls="out-before" id="tab-before">Before the fix</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="out-after" id="tab-after" tabindex="-1">After a correct fix</button>
+          </div>
+          <div class="term term-output" role="tabpanel" id="out-before" aria-labelledby="tab-before">
+<pre><span class="t-fail">test_four ... FAIL</span>
+test_negative ... ok
+test_nine ... ok
+test_one ... ok
+test_three ... ok
+test_twenty_five ... ok
+test_two ... ok
+test_zero ... ok
+
+<span class="t-fail">AssertionError: True is not false</span>
+Ran 8 tests · <span class="t-fail">FAILED (failures=1)</span></pre>
+          </div>
+          <div class="term term-output" role="tabpanel" id="out-after" aria-labelledby="tab-after" hidden>
+<pre><span class="t-ok">test_four ... ok</span>
+test_negative ... ok
+test_nine ... ok
+test_one ... ok
+test_three ... ok
+test_twenty_five ... ok
+test_two ... ok
+test_zero ... ok
+
+Ran 8 tests · <span class="t-ok">OK</span></pre>
+          </div>
+          <p class="fine">Recorded by running the starter and the reference fix with Python 3.10.</p>
+        </div>
+        <div>
+          <h3 class="mini">2 · Ask Copilot — explanation first</h3>
+          <div class="prompt" data-copy-source>
+            <div class="prompt-bar">Prompt<button type="button" class="copy">Copy</button></div>
+            <p>Explain this Python function in simple terms. Do not edit yet. Why does is_prime(4) return True? Suggest a minimal fix and tests covering negative numbers, 0, 1, primes and perfect squares. After I approve the edit, run the tests and show the actual output. If you cannot run them, say so.</p>
+          </div>
+          <h3 class="mini">3 · Approve a small change, then re-run the tests</h3>
+          <ul class="ticks">
+            <li>Does the explanation mention that <code>range()</code> excludes its end?</li>
+            <li>Did it change only <code>is_prime</code>?</li>
+            <li>Did the tests actually run — or did it just say they “should pass”?</li>
+          </ul>
+          <details class="more">
+            <summary>Stuck? See a reference fix (hand-written, not Copilot output)</summary>
+<pre class="code"><code>from math import isqrt
+
+def is_prime(n):
+    if n &lt; 2:
+        return False
+    for divisor in range(2, isqrt(n) + 1):
+        if n % divisor == 0:
+            return False
+    return True</code></pre>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal demo" id="demo-2" aria-labelledby="demo2-title">
+      <p class="kicker">Stop 09 · Copilot demo 2</p>
+      <h2 id="demo2-title">One scoped improvement: add a filter</h2>
+      <p class="lead">Open <code>copilot-demo/index.html</code> — a small learning-goals list. Ask Copilot to add a case-insensitive filter without breaking anything that already works.</p>
+      <div class="demo-grid">
+        <div>
+          <div class="prompt" data-copy-source>
+            <div class="prompt-bar">Prompt<button type="button" class="copy">Copy</button></div>
+            <p>In the existing index.html, add a labelled case-insensitive text filter for the learning-goals list. Preserve adding a goal, ignore blank submissions, keep keyboard access, and show a clear no-results message. Treat user input as text, not HTML. Do not install dependencies, add network calls or change unrelated files. First explain your plan; then implement the scoped change. Show the diff and a manual test checklist. Only claim checks passed if you actually ran them.</p>
+          </div>
+          <h3 class="mini">Acceptance checks</h3>
+          <ul class="ticks" id="demo2-checks">
+            <li>“git” shows matching goals</li>
+            <li>“GIT” shows the same matches</li>
+            <li>“zzzz” shows a no-results message</li>
+            <li>Clearing the filter shows every goal</li>
+            <li>Adding a matching goal while filtering keeps it visible</li>
+          </ul>
+        </div>
+        <div class="playground" aria-labelledby="play-title">
+          <div class="play-head">
+            <h3 id="play-title">Try it here</h3>
+            <div class="segmented" role="group" aria-label="Version">
+              <button type="button" aria-pressed="true" data-mode="starter">Starter</button>
+              <button type="button" aria-pressed="false" data-mode="reference">With filter</button>
+            </div>
+          </div>
+          <p class="fine" id="play-note">The starter you will give to Copilot.</p>
+          <form class="play-form" id="play-add">
+            <label for="play-goal">Add a goal</label>
+            <div class="row"><input id="play-goal" autocomplete="off" maxlength="150"><button type="submit" class="btn btn-small">Add</button></div>
+          </form>
+          <div class="play-filter" id="play-filter" hidden>
+            <label for="play-query">Filter goals</label>
+            <input id="play-query" type="search" autocomplete="off">
+          </div>
+          <ul class="play-list" id="play-list"></ul>
+          <p class="play-status" id="play-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="review" aria-labelledby="review-title">
+      <p class="kicker">Stop 10</p>
+      <h2 id="review-title">Before you accept the change</h2>
+      <p class="lead">A green check is helpful, not proof. Tick these off for every AI-assisted change.</p>
+      <ul class="checklist" id="review-list">
+        <li><label><input type="checkbox"> The change solves the stated problem.</label></li>
+        <li><label><input type="checkbox"> Tests actually ran, and they check meaningful behaviour.</label></li>
+        <li><label><input type="checkbox"> No unexpected files, dependencies, permissions or network calls.</label></li>
+        <li><label><input type="checkbox"> No secrets or personal data entered the repository.</label></li>
+        <li><label><input type="checkbox"> I can explain the change in my own words.</label></li>
+      </ul>
+      <p class="checklist-progress" id="review-progress" aria-live="polite">0 of 5 checked</p>
+    </section>
+
+    <section class="section reveal" id="next" aria-labelledby="next-title">
+      <p class="kicker">Landing</p>
+      <h2 id="next-title">Your next 30 days</h2>
+      <div class="cards-3">
+        <article class="card"><span class="tag tag-green">Learn</span><p>One language, Git, debugging and clear technical writing.</p></article>
+        <article class="card"><span class="tag tag-green">Build</span><p>One small project with a README, tests and honest limitations.</p></article>
+        <article class="card card-accent"><span class="tag tag-purple">Contribute</span><p>Help a teammate, or make one useful contribution that follows the project’s guidelines.</p></article>
+      </div>
+      <ul class="links">
+        <li><a href="https://github.github.com/dev-days/" rel="noopener"><b>Dev Days workshops</b><span>Official hands-on labs for the Copilot app and CLI</span></a></li>
+        <li><a href="https://skills.github.com" rel="noopener"><b>GitHub Skills</b><span>Free, guided exercises inside real repositories</span></a></li>
+        <li><a href="https://docs.github.com/en/copilot" rel="noopener"><b>GitHub Copilot docs</b><span>Plans, features and responsible use</span></a></li>
+        <li><a href="https://gh.io/dev-days/feedback" rel="noopener"><b>Attendee feedback</b><span>Tell the Dev Days team how the event went</span></a></li>
+      </ul>
+    </section>
+
+    <section class="section reveal" id="repo-map" aria-labelledby="map-title">
+      <p class="kicker">What is in this repository</p>
+      <h2 id="map-title">Repository map</h2>
+      <ul class="tree">
+        <li><a href="https://github.com/azaynul10/Github_DevDays_2026/tree/main/git-basics" rel="noopener"><code>git-basics/</code></a><span>Practice folder for your first commits</span></li>
+        <li><a href="https://github.com/azaynul10/Github_DevDays_2026/tree/main/copilot-demo" rel="noopener"><code>copilot-demo/</code></a><span>Buggy <code>prime.py</code>, its tests, and the learning-goals app</span></li>
+        <li><a href="https://github.com/azaynul10/Github_DevDays_2026/tree/main/fallback-solutions" rel="noopener"><code>fallback-solutions/</code></a><span>Hand-written reference answers — try Copilot first</span></li>
+        <li><a href="Your-First-AI-Teammate-DevDays-Solo.pptx" download><code>Your-First-AI-Teammate-DevDays-Solo.pptx</code></a><span>The session slides</span></li>
+      </ul>
+    </section>
+  </div>
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-name">Zaynul Abedin Miah</p>
+      <p><a href="https://github.com/azaynul10" rel="noopener">github.com/azaynul10</a> · <a href="https://www.linkedin.com/in/zaynul-abedin-miah/" rel="noopener">LinkedIn</a> · <a href="https://zaynulabedinmiah.com" rel="noopener">zaynulabedinmiah.com</a></p>
+    </div>
+    <p class="fine">A community companion for Dev Days Dhaka 2026, not an official GitHub website. GitHub, GitHub Copilot and their logos are trademarks of GitHub, Inc. #DevDays</p>
+  </div>
+</footer>
+
+<script src="assets/drone.js" defer></script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
